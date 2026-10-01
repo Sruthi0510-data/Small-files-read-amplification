@@ -114,7 +114,7 @@
     "prune_overstatement": 4.3,
     "prune_promised": 4.9,
     "small_file_share_pct": 99.7,
-    "tests_total": 111
+    "tests_total": 156
   },
   "note": "every value here is produced by running the suite and the experiment; tools/check_numbers.py fails the build when a document quotes a figure the code no longer produces",
   "table_values": [

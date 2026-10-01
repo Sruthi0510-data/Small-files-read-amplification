@@ -246,7 +246,7 @@ value, every document is searched separately for stale wording, and every number
 in this README must correspond to a metric so a figure nothing re-measures
 cannot quietly appear.
 
-111 tests, 100.0% line and 100.0% branch coverage, and the suite runs offline
+156 tests, 100.0% line and 100.0% branch coverage, and the suite runs offline
 from a fresh clone.
 
 ## Reading order
