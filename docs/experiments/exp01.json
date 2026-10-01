@@ -1,0 +1,114 @@
+{
+  "files": 16848,
+  "bytes": 8093958144,
+  "rows": 121200000,
+  "partitions": 30,
+  "median_file_kib": 96.0,
+  "mean_file_kib": 469.15099715099717,
+  "small_file_share": 0.9971509971509972,
+  "bytes_in_small_files_share": 0.20404197434900895,
+  "total_ms": 19367.333333333332,
+  "plan_visible_ms": 2680.2083333333335,
+  "plan_blind_ms": 16687.125,
+  "plan_blind_share": 0.8616119066469313,
+  "amplification": 7.226055188495918,
+  "break_even_mib": 2.8524999999999996,
+  "pair_plans_equal": true,
+  "pair_time_ratio": 45.599421208032695,
+  "pair_file_ratio": 2000.0,
+  "prune_bytes_kept": 0.20404197434900895,
+  "prune_files_kept": 0.9971509971509972,
+  "prune_promised": 4.900952380952381,
+  "prune_delivered": 1.126894963331111,
+  "prune_overstatement": 4.349076480442441,
+  "compaction": [
+    {
+      "target_kib": 64,
+      "files": 123504,
+      "scan_ms": 125004.91666666666,
+      "improvement": -5.454420673987126,
+      "payback_scans": null,
+      "above_break_even": false
+    },
+    {
+      "target_kib": 1024,
+      "files": 7719,
+      "scan_ms": 10325.502604166666,
+      "improvement": 0.4668598703573027,
+      "payback_scans": 3.283940700384757,
+      "above_break_even": false
+    },
+    {
+      "target_kib": 8192,
+      "files": 964,
+      "scan_ms": 3635.003472222222,
+      "improvement": 0.8123126498800959,
+      "payback_scans": 1.462106185709673,
+      "above_break_even": true
+    },
+    {
+      "target_kib": 32768,
+      "files": 241,
+      "scan_ms": 2918.9071180555557,
+      "improvement": 0.8492870924552225,
+      "payback_scans": 1.3549162795093903,
+      "above_break_even": true
+    },
+    {
+      "target_kib": 131072,
+      "files": 60,
+      "scan_ms": 2739.635416666667,
+      "improvement": 0.8585434881759664,
+      "payback_scans": 1.3295267246731266,
+      "above_break_even": true
+    },
+    {
+      "target_kib": 524288,
+      "files": 15,
+      "scan_ms": 2695.065104166667,
+      "improvement": 0.86084480202919,
+      "payback_scans": 1.3232991536750698,
+      "above_break_even": true
+    }
+  ],
+  "best_improvement": 0.86084480202919,
+  "best_target_mib": 512.0,
+  "improvement_at_break_even": 0.7232262336064164,
+  "payback_at_break_even": 1.765386413082481,
+  "claim": 0.4,
+  "claim_target_kib": 1024,
+  "claim_improvement": 0.4668598703573027,
+  "claim_payback_scans": 3.283940700384757,
+  "claim_files_after": 7719,
+  "claim_above_break_even": false,
+  "profiles": [
+    {
+      "profile": "adls-databricks",
+      "per_file_ms": 25.020833333333332,
+      "throughput_mib_per_s": 120.0,
+      "break_even_mib": 3.0025,
+      "blind_share": 0.8676102544682183
+    },
+    {
+      "profile": "gcs-bigquery-external",
+      "per_file_ms": 39.44642857142857,
+      "throughput_mib_per_s": 140.0,
+      "break_even_mib": 5.5225,
+      "blind_share": 0.9233938005249593
+    },
+    {
+      "profile": "local-nvme",
+      "per_file_ms": 1.78125,
+      "throughput_mib_per_s": 2000.0,
+      "break_even_mib": 3.5625,
+      "blind_share": 0.8860496014171834
+    },
+    {
+      "profile": "s3-spark",
+      "per_file_ms": 31.694444444444443,
+      "throughput_mib_per_s": 90.0,
+      "break_even_mib": 2.8524999999999996,
+      "blind_share": 0.8616119066469313
+    }
+  ]
+}

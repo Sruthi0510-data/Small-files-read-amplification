@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 300" width="880" height="300" role="img" aria-labelledby="title desc">
+<title id="title">Where a scan's time goes</title>
+<desc id="desc">A single bar representing one modelled scan, split into the 13.8 percent a query plan reports and the 86.2 percent it cannot, which is time spent opening files.</desc>
+<rect width="880" height="300" fill="#fcfcfb"/>
+<text x="24.0" y="34.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" font-weight="600" fill="#1d1d1b" text-anchor="start">Where one scan's time goes</text>
+<text x="24.0" y="58.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#6b6b66" text-anchor="start">16,848 files, 7.5 GiB, median file 96 KiB</text>
+<text x="24.0" y="96.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#6b6b66" text-anchor="start">modelled scan</text>
+<rect x="24" y="118" width="114.8" height="54" rx="4" fill="#2a78d6"/>
+<rect x="138.8" y="118" width="717.2" height="54" rx="4" fill="#eb6834"/>
+<text x="81.4" y="196.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#2a78d6" text-anchor="middle">reading bytes, 13.8%</text>
+<text x="497.4" y="196.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#eb6834" text-anchor="middle">opening files, 86.2%</text>
+<line x1="138.8" y1="104" x2="138.8" y2="204" stroke="#d9d9d4" stroke-width="1.5" stroke-dasharray="4 4"/>
+<text x="146.8" y="98.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" font-weight="400" fill="#6b6b66" text-anchor="start">everything to the right of this line is invisible to a query plan</text>
+<rect x="24" y="222" width="832" height="48" rx="8" fill="none" stroke="#d9d9d4" stroke-width="1.5"/>
+<text x="44.0" y="252.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" font-weight="400" fill="#1d1d1b" text-anchor="start">break-even file size 2.9 MiB   .   this table's median file 96 KiB   .   amplification 7.2x</text>
+</svg>

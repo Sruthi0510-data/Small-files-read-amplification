@@ -1,0 +1,104 @@
+{
+  "note": "every command below was executed by tools/capture_terminal.py; exit codes are as returned, and elapsed times and absolute paths are normalised so the committed transcript does not change on every run",
+  "captures": [
+    {
+      "label": "the suite, with branch coverage",
+      "command": "python3 -m pytest -q -p no:cacheprovider --cov=sfa --cov-branch --cov-report=term-missing --cov-fail-under=100",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "6a6a383556f38c754a94a98cb1b09f6f5160e26026bc9ccfc5a5dc55d857af87",
+      "output_lines": 18,
+      "output": "............................................................................................ [ 82%]\n...................                                                                          [100%]\n========================================== tests coverage ==========================================\n_________________________ coverage: platform linux, python 3.11.15-final-0 _________________________\n\nName                    Stmts   Miss Branch BrPart  Cover   Missing\n-------------------------------------------------------------------\nsrc/sfa/__init__.py         2      0      0      0   100%\nsrc/sfa/cli.py            180      0     16      0   100%\nsrc/sfa/compaction.py      52      0     10      0   100%\nsrc/sfa/cost.py            71      0     12      0   100%\nsrc/sfa/fixtures.py        28      0      4      0   100%\nsrc/sfa/layout.py          75      0     14      0   100%\nsrc/sfa/plan.py            40      0      2      0   100%\nsrc/sfa/pruning.py         43      0      8      0   100%\n-------------------------------------------------------------------\nTOTAL                     491      0     66      0   100%\nRequired test coverage of 100% reached. Total coverage: 100.00%",
+      "max_lines": 15,
+      "tail_lines": 4
+    },
+    {
+      "label": "one scan, split where the plan's knowledge stops",
+      "command": "python3 -m sfa.cli scan",
+      "exit_code": 3,
+      "expected_exit_code": 3,
+      "output_sha256": "5935a89eb7689506db645b88d6bf215307039f4daf0b4915134a88113b7c3147",
+      "output_lines": 20,
+      "output": "layout                events\nprofile               s3-spark\n\nwhat the plan reports\n  bytes scanned       8,093,958,144\n  rows scanned        121,200,000\n  partitions scanned  30\n\nwhat the plan does not report\n  files               16,848\n  median file         0.1 MiB\n  break-even file     2.9 MiB\n\nmodelled scan         19,367 ms\n  reading bytes       2,680 ms\n  opening files       16,687 ms\n  invisible to a plan 86.2%\n  amplification       7.2x\n\nmost of this scan is opening files, which no plan reports",
+      "max_lines": 22,
+      "tail_lines": 0
+    },
+    {
+      "label": "the same model on a table that does not need fixing",
+      "command": "python3 -m sfa.cli scan --layout uniform-large",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "0eae99a29d439c8c07c611eefc7fcb24561c49cb450dfce09789b5cc3a728736",
+      "output_lines": 20,
+      "output": "layout                uniform-large\nprofile               s3-spark\n\nwhat the plan reports\n  bytes scanned       262,144,000\n  rows scanned        4,000,000\n  partitions scanned  1\n\nwhat the plan does not report\n  files               2\n  median file         125.0 MiB\n  break-even file     2.9 MiB\n\nmodelled scan         89 ms\n  reading bytes       87 ms\n  opening files       2 ms\n  invisible to a plan 2.2%\n  amplification       1.0x\n\nmost of this scan is reading data, which is what the plan reports",
+      "max_lines": 8,
+      "tail_lines": 5
+    },
+    {
+      "label": "two layouts with identical plans and one order of magnitude between them",
+      "command": "python3 -m sfa.cli indistinguishable",
+      "exit_code": 3,
+      "expected_exit_code": 3,
+      "output_sha256": "8fd5a9166e378b141d61a2ea80cb4d3918c71156fde7736ca360695233d0889c",
+      "output_lines": 12,
+      "output": "profile               s3-spark\n\n  small layout plan   bytes=262144000 rows=4000000 partitions=1\n  large layout plan   bytes=262144000 rows=4000000 partitions=1\n  plans are equal     True\n\n  small layout files  4,000\n  large layout files  2\n  modelled times      4,049 ms and 89 ms\n  ratio               45.6x\n\nidentical plans, and one takes an order of magnitude longer",
+      "max_lines": 13,
+      "tail_lines": 0
+    },
+    {
+      "label": "what partition pruning promises against what it buys",
+      "command": "python3 -m sfa.cli prune",
+      "exit_code": 3,
+      "expected_exit_code": 3,
+      "output_sha256": "062ee73928e3d4210120762b0c3754538329d67d44380054d770bb83fa98035e",
+      "output_lines": 11,
+      "output": "layout                events\nkept partitions       6 of 30\n\n  bytes kept          20.4%\n  files kept          99.7%\n\n  plan promises       4.9x faster\n  model delivers      1.13x faster\n  overstated by       4.3x\n\npruning dropped the bytes and left the files, so the plan overstates the gain",
+      "max_lines": 12,
+      "tail_lines": 0
+    },
+    {
+      "label": "pricing a quoted performance improvement against this table",
+      "command": "python3 -m sfa.cli claim --improvement 0.40",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "c0a805386a6a533a494b23aec41cebf75be42b13c689919002537a866abf7a28",
+      "output_lines": 11,
+      "output": "layout                events\nclaimed improvement   40%\n\n  cheapest rewrite    files of 1.0 MiB\n  file count          16,848 becomes 7,719\n  improvement         46.7%\n  rewrite cost        29,693 ms, paid back in 3.3 scans\n  above break-even    False\n\nthe cheapest rewrite reaching this figure leaves the table below the\nbreak-even file size, so the figure is reachable without fixing the layout",
+      "max_lines": 13,
+      "tail_lines": 0
+    },
+    {
+      "label": "the same claim against a table that was already well laid out: a refusal",
+      "command": "python3 -m sfa.cli claim --layout uniform-large --improvement 0.9",
+      "exit_code": 4,
+      "expected_exit_code": 4,
+      "output_sha256": "bdcd99f643947488538277de7c89f12d6c6805e1f0f3356050447587c2dbc497",
+      "output_lines": 5,
+      "output": "layout                uniform-large\nclaimed improvement   90%\n\nno rewrite in the search reaches that figure on this table\na performance claim without its starting layout describes nothing",
+      "max_lines": 7,
+      "tail_lines": 0
+    },
+    {
+      "label": "a partition filter the table cannot satisfy",
+      "command": "python3 -m sfa.cli prune --keep 999",
+      "exit_code": 2,
+      "expected_exit_code": 2,
+      "output_sha256": "74c758becf33e383a793d2b51be2bf5e257dda9596580ab0ae08979df11d7445",
+      "output_lines": 1,
+      "output": "the layout has 30 partitions, not 999",
+      "max_lines": 3,
+      "tail_lines": 0
+    },
+    {
+      "label": "every published figure re-checked against the prose",
+      "command": "python3 tools/check_numbers.py",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "output_sha256": "e46bd9efd6508fff7fcdb731f5c4356eb72090c46e65fc810a51bc26bf1fc5a7",
+      "output_lines": 1,
+      "output": "number check passed: 26 metrics verified against 5 documents, forwards, per document and backwards",
+      "max_lines": 3,
+      "tail_lines": 0
+    }
+  ]
+}

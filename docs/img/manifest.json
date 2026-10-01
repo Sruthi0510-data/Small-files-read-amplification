@@ -1,0 +1,32 @@
+{
+  "shots": [
+    {
+      "image": "docs/img/report-summary.png",
+      "source": "docs/report.html",
+      "framed_from": "summary",
+      "framed_to": "pruning",
+      "height_px": 498
+    },
+    {
+      "image": "docs/img/report-pruning.png",
+      "source": "docs/report.html",
+      "framed_from": "pruning",
+      "framed_to": "claim",
+      "height_px": 817
+    },
+    {
+      "image": "docs/img/report-claim.png",
+      "source": "docs/report.html",
+      "framed_from": "claim",
+      "framed_to": null,
+      "height_px": 280
+    }
+  ],
+  "badge": {
+    "colour": "rgb(255, 255, 255)",
+    "background": "rgb(235, 104, 52)",
+    "text": "most of it, no",
+    "visible": true
+  },
+  "note": "captured from the report the tool generates, framed by heading id, with the verdict badge contrast read back from the rendered page"
+}

@@ -1,0 +1,167 @@
+{
+  "anchors": {
+    "amplification": [
+      "{} times longer"
+    ],
+    "best_improvement_pct": [
+      "caps out at {}%"
+    ],
+    "break_even_mib": [
+      "break-even file size is {} MiB"
+    ],
+    "bytes_in_small_files_pct": [
+      "hold {}% of the bytes"
+    ],
+    "claim_files_after": [
+      "still leaves {} files"
+    ],
+    "claim_improvement_pct": [
+      "actually delivers {}%"
+    ],
+    "claim_payback_scans": [
+      "back in {} scans"
+    ],
+    "claim_pct": [
+      "{}% performance improvement",
+      "clears {}%",
+      "so {}% is reachable",
+      "a {}% improvement on a table"
+    ],
+    "claim_target_kib": [
+      "files of {} KiB"
+    ],
+    "coverage_branch_pct": [
+      "{}% branch"
+    ],
+    "coverage_line_pct": [
+      "{}% line"
+    ],
+    "files": [
+      "holds {} files"
+    ],
+    "gib": [
+      "{} GiB"
+    ],
+    "improvement_at_break_even_pct": [
+      "break-even target reaches {}%"
+    ],
+    "mean_file_kib": [
+      "mean is {} KiB"
+    ],
+    "median_file_kib": [
+      "median file is {} KiB"
+    ],
+    "pair_file_ratio": [
+      "{} times as many files"
+    ],
+    "pair_time_ratio": [
+      "one takes {} times"
+    ],
+    "partitions": [
+      "across {} partitions"
+    ],
+    "payback_at_break_even": [
+      "pays for itself in {} scans"
+    ],
+    "plan_blind_pct": [
+      "{}% of the modelled"
+    ],
+    "prune_delivered": [
+      "delivers {} times"
+    ],
+    "prune_overstatement": [
+      "overstates it by {}"
+    ],
+    "prune_promised": [
+      "promises a {} times"
+    ],
+    "small_file_share_pct": [
+      "{}% of the files"
+    ],
+    "tests_total": [
+      "{} tests,"
+    ]
+  },
+  "checked_documents": [
+    "README.md",
+    "docs/adr/ADR-001-the-file-is-the-unit.md",
+    "docs/adr/ADR-002-a-model-with-its-parameters-on-the-page.md",
+    "docs/adr/ADR-003-what-this-repository-cannot-measure.md"
+  ],
+  "metrics": {
+    "amplification": 7.2,
+    "best_improvement_pct": 86.1,
+    "break_even_mib": 2.9,
+    "bytes_in_small_files_pct": 20.4,
+    "claim_files_after": 7719,
+    "claim_improvement_pct": 46.7,
+    "claim_payback_scans": 3.3,
+    "claim_pct": 40,
+    "claim_target_kib": 1024,
+    "coverage_branch_pct": 100.0,
+    "coverage_line_pct": 100.0,
+    "files": 16848,
+    "gib": 7.5,
+    "improvement_at_break_even_pct": 72.3,
+    "mean_file_kib": 469,
+    "median_file_kib": 96,
+    "pair_file_ratio": 2000,
+    "pair_time_ratio": 46,
+    "partitions": 30,
+    "payback_at_break_even": 1.8,
+    "plan_blind_pct": 86.2,
+    "prune_delivered": 1.13,
+    "prune_overstatement": 4.3,
+    "prune_promised": 4.9,
+    "small_file_share_pct": 99.7,
+    "tests_total": 111
+  },
+  "note": "every value here is produced by running the suite and the experiment; tools/check_numbers.py fails the build when a document quotes a figure the code no longer produces",
+  "table_values": [
+    64,
+    123504,
+    "125,005",
+    "-545.4",
+    1024,
+    7719,
+    "10,326",
+    "46.7",
+    "3.3",
+    8192,
+    964,
+    "3,635",
+    "81.2",
+    "1.5",
+    32768,
+    241,
+    "2,919",
+    "84.9",
+    "1.4",
+    131072,
+    60,
+    "2,740",
+    "85.9",
+    "1.3",
+    524288,
+    15,
+    "2,695",
+    "86.1",
+    "1.3",
+    "25.0",
+    "120",
+    "3.0",
+    "86.8",
+    "39.4",
+    "140",
+    "5.5",
+    "92.3",
+    "1.8",
+    "2,000",
+    "3.6",
+    "88.6",
+    "31.7",
+    "90",
+    "2.9",
+    "86.2"
+  ]
+}
