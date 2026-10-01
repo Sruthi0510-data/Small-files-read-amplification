@@ -231,6 +231,16 @@ down where the guards used to be.
 names, below an argparse `choices` list built from the same mapping. Unreachable,
 and removed.
 
+**A transcript that could not regenerate itself.** The capture runs the suite
+and records its exit code, and the suite contains tests that assert every
+command in the committed transcript exited as expected. A stale figure in this
+README made the suite fail once, the capture recorded that, and from then on the
+transcript tests failed because the transcript said the suite failed, which made
+the suite fail, which is what the next capture would record. The captured suite
+run now deselects the three tests that read the transcript back; they still run
+in the full suite and in CI, and the title of the rendered image says the run
+was narrowed.
+
 **A comparison command that could only ever return one answer.** It compared two
 hardcoded layouts, so its "these are distinguishable" branch could not be
 reached. Rather than delete the branch, the command now takes `--left` and
