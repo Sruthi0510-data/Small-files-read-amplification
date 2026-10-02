@@ -1,49 +1,74 @@
-.PHONY: help test cover experiment tables report proof check preflight verify clean
+# Every target here runs offline. `make verify` is the one the README promises a
+# reviewer, so it is the one that must never be broken.
+#
+# The target names are the same in all seven repositories of this portfolio, so
+# one CI workflow drives them all and the workflow never needs to know how any
+# individual repository builds its own report.
 
 PY ?= python3
-SRC := src
+PKG := sfa
+
+.PHONY: help install test cover receipts tables diagrams report proof check \
+	preflight verify clean
+
+# Exported so every target works from a bare clone, before `make install` has
+# been run. With the package installed this resolves to the same code, so the
+# two ways of working cannot disagree.
+export PYTHONPATH := src
 
 help:
-	@echo "test        run the suite"
-	@echo "cover       run the suite with branch coverage, failing under 100 percent"
-	@echo "experiment  run the experiment, writing JSON under docs/experiments/"
-	@echo "tables      regenerate the generated blocks in the README"
-	@echo "report      build the HTML report, the diagram and the screenshots"
-	@echo "proof       capture the command line and commit the transcript"
-	@echo "check       fail if a document quotes a figure the code no longer produces"
-	@echo "preflight   authorship, ascii, exit codes, determinism and offline checks"
-	@echo "verify      everything, in the order CI runs it"
+	@echo "install      editable install with the dev extra"
+	@echo "test         run the suite"
+	@echo "cover        the suite with branch coverage, failing under 100 percent"
+	@echo "receipts     re-measure every published figure into docs/metrics.json"
+	@echo "tables       rewrite the generated blocks in the README"
+	@echo "diagrams     re-render the committed SVGs from docs/metrics.json"
+	@echo "report       build docs/report.html and screenshot it"
+	@echo "proof        capture the command line into a committed transcript"
+	@echo "check        fail if a document quotes a figure the code no longer produces"
+	@echo "preflight    authorship, ascii, exit codes, determinism, offline, urls"
+	@echo "verify       everything, in the order CI runs it"
+
+install:
+	$(PY) -m pip install -e ".[dev]"
 
 test:
-	PYTHONPATH=$(SRC) $(PY) -m pytest tests
+	$(PY) -m pytest -q
 
 cover:
-	PYTHONPATH=$(SRC) $(PY) -m pytest tests --cov=sfa --cov-report=term-missing --cov-branch --cov-fail-under=100
+	$(PY) -m pytest -q --cov=$(PKG) --cov-branch --cov-report=term-missing \
+		--cov-report=json:coverage.json --junitxml=junit.xml --cov-fail-under=100
 
-experiment:
-	PYTHONPATH=$(SRC) $(PY) experiments/exp01_what_the_plan_cannot_see.py > /dev/null
-	PYTHONPATH=$(SRC) $(PY) tools/collect_metrics.py
+# Depends on nothing and runs the suite itself, with --skip-tests left to the
+# caller. A red suite surfacing as a CalledProcessError from inside a metrics
+# script costs an hour to attribute, so CI runs the suite as its own step first
+# and then calls this with the reports already on disk.
+receipts:
+	$(PY) tools/collect_metrics.py
 
 tables:
-	PYTHONPATH=$(SRC) $(PY) tools/render_tables.py
+	$(PY) tools/render_tables.py
+
+diagrams:
+	$(PY) tools/render_diagrams.py
 
 report:
-	PYTHONPATH=$(SRC) $(PY) tools/render_diagrams.py
-	PYTHONPATH=$(SRC) $(PY) tools/build_report.py
-	PYTHONPATH=$(SRC) $(PY) tools/capture_screenshots.py
-	PYTHONPATH=$(SRC) $(PY) tools/verify_rendering.py
+	$(PY) tools/build_report.py
+	$(PY) tools/capture_screenshots.py
+	$(PY) tools/verify_rendering.py
 
 proof:
-	PYTHONPATH=$(SRC) $(PY) tools/proof_of_work.py
+	$(PY) tools/proof_of_work.py
 
 check:
-	PYTHONPATH=$(SRC) $(PY) tools/check_numbers.py
+	$(PY) tools/check_numbers.py
 
 preflight:
-	PYTHONPATH=$(SRC) $(PY) tools/preflight.py
+	$(PY) tools/preflight.py
 
-verify: cover experiment tables report proof check
+verify: cover receipts tables diagrams report proof check
 	@echo "verified"
 
 clean:
 	rm -rf .pytest_cache .coverage htmlcov coverage.json junit.xml
+

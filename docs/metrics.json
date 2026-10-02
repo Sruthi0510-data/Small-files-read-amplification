@@ -88,6 +88,7 @@
     "docs/adr/ADR-002-a-model-with-its-parameters-on-the-page.md",
     "docs/adr/ADR-003-what-this-repository-cannot-measure.md"
   ],
+  "measured_despite_a_red_suite": false,
   "metrics": {
     "amplification": 7.2,
     "best_improvement_pct": 86.1,
