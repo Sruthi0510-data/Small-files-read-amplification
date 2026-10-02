@@ -14,9 +14,9 @@ several in scan time, and `Layout` is built to make that representable.
 
 from __future__ import annotations
 
+from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from statistics import median
-from typing import Iterable, Iterator, Sequence
 
 __all__ = ["DataFile", "Layout", "LayoutError", "MIB", "uniform", "rebalanced"]
 
@@ -131,7 +131,7 @@ class Layout:
     def bytes_in_small_files(self, threshold_bytes: int) -> int:
         return sum(file.bytes for file in self.small_files(threshold_bytes))
 
-    def with_files(self, files: Iterable[DataFile], *, name: str | None = None) -> "Layout":
+    def with_files(self, files: Iterable[DataFile], *, name: str | None = None) -> Layout:
         return Layout(files=tuple(files), name=name or self.name)
 
 

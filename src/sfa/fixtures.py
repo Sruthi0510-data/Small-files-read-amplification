@@ -19,7 +19,7 @@ time to the layout rather than to a different table.
 
 from __future__ import annotations
 
-from sfa.layout import DataFile, Layout, MIB
+from sfa.layout import MIB, DataFile, Layout
 
 __all__ = ["events", "uniform_small", "uniform_large", "COMPACTED_DAYS", "RECENT_DAYS"]
 

@@ -16,10 +16,10 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence
 
-from sfa.compaction import plan_compaction, scans_to_target, sweep_targets
+from sfa.compaction import scans_to_target, sweep_targets
 from sfa.cost import PROFILES, UnknownProfileError, break_even_bytes, profile, scan_cost
 from sfa.fixtures import events, uniform_large, uniform_small
 from sfa.layout import MIB, Layout, LayoutError

@@ -10,7 +10,6 @@ own background colour passes every test in the suite and is invisible.
 
 from __future__ import annotations
 
-import html
 import json
 from pathlib import Path
 

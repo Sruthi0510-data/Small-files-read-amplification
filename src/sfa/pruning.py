@@ -26,8 +26,8 @@ already ruled out.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Sequence
 
 from sfa.cost import ScanCost, StorageProfile, scan_cost
 from sfa.layout import Layout, LayoutError
