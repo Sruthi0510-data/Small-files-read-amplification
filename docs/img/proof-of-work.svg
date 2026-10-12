@@ -106,6 +106,6 @@
 <text x="18" y="1978" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#d8dee6" xml:space="preserve">the layout has 30 partitions, not 999</text>
 <text x="18" y="1996" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="600" fill="#4cc38a" xml:space="preserve">[exit 2]</text>
 <text x="18" y="2032" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="600" fill="#5aa9f5" xml:space="preserve">$ python3 tools/check_numbers.py</text>
-<text x="18" y="2050" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#d8dee6" xml:space="preserve">number check passed: 26 metrics verified against 5 documents, forwards, per document and backwards</text>
+<text x="18" y="2050" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="400" fill="#d8dee6" xml:space="preserve">number check passed: 26 metrics verified against 4 documents, forwards, per document and backwards</text>
 <text x="18" y="2068" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12.5" font-weight="600" fill="#4cc38a" xml:space="preserve">[exit 0]</text>
 </svg>

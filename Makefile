@@ -75,4 +75,3 @@ verify: lint cover receipts tables diagrams report proof check
 
 clean:
 	rm -rf .pytest_cache .coverage htmlcov coverage.json junit.xml
-
